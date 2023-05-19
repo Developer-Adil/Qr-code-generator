@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qr Code Generator</title>
+</head>
+<link rel="stylesheet" href="css/style.css">
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Qr Code Generator</h1>
+            <p>Paste URL or text to generate Qr code....</p>
+            <input type="text" id="QrCode" placeholder="Paste URL">
+            <div id="imgBox">
+                <img id="qr-img" src="" alt="qr-code">
+            </div>
+            <button onclick="GenerateQr()">Generate</button>
+        </header>
+    </div>
+    <script>
+        let imgBox = document.getElementById("imgBox");
+        let QrImg = document.getElementById("qr-img");
+        let QrCode = document.getElementById("QrCode");
+
+        function GenerateQr() {
+            if (QrCode.value.length > 0) {
+                QrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + QrCode.value;
+                imgBox.classList.add("show-img");
+
+            } else {
+                QrCode.classList.add("error");
+                setTimeout(() => {
+                    QrCode.classList.remove("error");
+
+                }, 1000)
+            }
+
+        }
+    </script>
+</body>
+
+</html>
